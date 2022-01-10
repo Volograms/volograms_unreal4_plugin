@@ -52,6 +52,26 @@ This plugin lets you play [volograms](https://www.volograms.com/) captured eithe
 
 ![Adding our audio source to play to the BeginPlay event.](adding_sound_file.png "Playing our sound with the VologramActor")
 
+### Known Issues ###
+
+* Older Volograms may have inconsistent orientation and scale, and earlier versions will be missing normals. If you need to load these let us know.
+* There is no built-in demo or functions for seek/rewind/loop yet. We are happy to take feature requests based on early-adopter testing.
+
+### Future Plans and Ideas ###
+
+* Simpler file loading.
+* A video tutorial explaining how to use this plugin.
+* Audio playback using any audio track found in the vologram video file.
+* User interface style controls to rewind/seek/loop/pause/play. Probably a library of Blueprint functions would be the most idiomatic approach here, but we could also tie these to a GUI panel in a demo application. 
+* For editor integration an Unreal 'Factory' class could be implemented. This would provide a context menu ability to create 'Volograms' assets, rather than manually creating a Blueprint from our custom Actor class. 
+
+### Unity and OpenGL/DirectX Support ###
+
+* We also have an equivalent Unity plugin using the same base libraries.
+* The core libraries are implemented in C, and can be compiled into .dlls.
+* These are `vol_geom`, which processes vologram header and sequence files into geometry, and `vol_av`, which is a wrapper over FFmpeg.
+* To use FFmpeg for texture playback in another project, the `vol_av` code can be compiled into a `.dll` as a Unity plugin, with a little bit of project-specific hook-up code added.
+* To play a vologram in OpenGL or DirectX, the `vol_geom` and `vol_av` files can be dropped into a program's source build, and the functions accessed directly from your program.
 
 ## Licence ##
 
@@ -91,24 +111,3 @@ See the `Source/volograms/ThirdParty/ffmpeg/LICENSE.md` file for details.
 > ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 > (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 > SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-### Known Issues ###
-
-* Older Volograms may have inconsistent orientation and scale, and earlier versions will be missing normals. If you need to load these let us know.
-* There is no built-in demo or functions for seek/rewind/loop yet. We are happy to take feature requests based on early-adopter testing.
-
-### Future Plans and Ideas ###
-
-* Simpler file loading.
-* A video tutorial explaining how to use this plugin.
-* Audio playback using any audio track found in the vologram video file.
-* User interface style controls to rewind/seek/loop/pause/play. Probably a library of Blueprint functions would be the most idiomatic approach here, but we could also tie these to a GUI panel in a demo application. 
-* For editor integration an Unreal 'Factory' class could be implemented. This would provide a context menu ability to create 'Volograms' assets, rather than manually creating a Blueprint from our custom Actor class. 
-
-### Unity and OpenGL/DirectX Support ###
-
-* We also have an equivalent Unity plugin using the same base libraries.
-* The core libraries are implemented in C, and can be compiled into .dlls.
-* These are `vol_geom`, which processes vologram header and sequence files into geometry, and `vol_av`, which is a wrapper over FFmpeg.
-* To use FFmpeg for texture playback in another project, the `vol_av` code can be compiled into a `.dll` as a Unity plugin, with a little bit of project-specific hook-up code added.
-* To play a vologram in OpenGL or DirectX, the `vol_geom` and `vol_av` files can be dropped into a program's source build, and the functions accessed directly from your program.
