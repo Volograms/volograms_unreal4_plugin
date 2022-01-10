@@ -54,9 +54,9 @@
 
 ## Licence ##
 
-Copyright 2021, Volograms.
+Copyright 2022, Volograms.
 
-* Source code included in this plugin copyright 2021 Volograms is provided under the terms of the MIT licence (see the `LICENSE` file for details).
+* Source code included in this plugin is provided under the terms of the MIT licence (see the `LICENSE` file for details).
 * Other terms apply to third-party code found in the `Source/volograms/ThirdParty` sub-directory:
 
 ### Dependencies
