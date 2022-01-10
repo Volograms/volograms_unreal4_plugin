@@ -19,7 +19,6 @@ This plugin lets you play [volograms](https://www.volograms.com/) captured eithe
 * Only 64-bit Windows systems are supported currently.
 * MacOS and iOS are work-in-progress.
 * Android is planned for a future version.
-* 32-bit Windows can be added if required.
 
 ### How do I get set up? ###
 
