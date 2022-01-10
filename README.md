@@ -9,8 +9,8 @@ This plugin lets you play [volograms](https://www.volograms.com/) captured eithe
 
 ### Contents and Features of the Plugin ###
 
-* Drag-and-drop VologramActor class Blueprint integration for use in the Editor.
-* VologramMaterial class for the video texture (used automatically by the Actor class).
+* Drag-and-drop *VologramActor* class Blueprint integration for use in the Editor.
+* *VologramMaterial* class for the video texture (used automatically by the Actor class).
 * C++ access to key functionality from the Volograms SDK if you prefer to customise your own vologram player.
 * Unreal users can load and play a Vologram without writing any code.
 
