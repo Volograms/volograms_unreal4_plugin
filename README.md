@@ -1,4 +1,4 @@
-# Volograms Unreal 4 Plugin #
+# Volograms Toolkit - Unreal 4 Plugin #
 
 * Current version:              0.6.2 (beta)
 * Built against Unreal version: 4.27
