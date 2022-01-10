@@ -1,0 +1,2 @@
+expect similar to:
+https://github.com/bakjos/FFMPEGMedia/tree/master/ThirdParty/ffmpeg/lib/android
