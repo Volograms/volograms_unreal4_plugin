@@ -1,10 +1,10 @@
 /**
  * Vologram-playing Actor Class for Unreal 4.
  *
+ * Copyright: 2022, Volograms (http://volograms.com/) \n
  * Authors:   Anton Gerdelan <anton@volograms.com> \n
- * Copyright: 2021, Volograms (http://volograms.com/) \n
  * Language:  C++ \n
- * Licence:   The MIT License. See LICENSE.md for details. \n
+ * Licence:   The MIT License. See LICENSE file for details. \n
  */
 
 #include "VologramActor.h"
