@@ -55,8 +55,8 @@
 
 * Source code included in this plugin copyright 2021 Volograms is provided under the terms of the MIT licence (see LICENSE.md).
 * Other terms apply to third-party code found in the `Source/ThirdParty` sub-directory:
-    * This plugin depends on [ffmpeg](https://www.ffmpeg.org/) for video playback, which is included in the plugin. This is used under the LGPL licence.
-    * The source code for ffmpeg, and various notices, must be attached to any distribution of this plugin. See the ffmpeg website's Legal page for further details.
+    * This plugin depends on [FFmpeg](https://www.ffmpeg.org/) for video playback, which is included in the plugin. This is used under the LGPL licence.
+    * The source code for FFmpeg, and various notices, must be attached to any distribution of this plugin. See the FFmpeg website's [Legal](https://ffmpeg.org/legal.html) page for further details.
     * The MPEG-4 and h264 standards are used by this plugin, which may not be suitable for some commercial uses.
 
 ### Known Issues ###
@@ -76,6 +76,6 @@
 
 * We also have an equivalent Unity plugin using the same base libraries.
 * The core libraries are implemented in C, and can be compiled into .dlls.
-* These are `vol_geom`, which processes vologram header and sequence files into geometry, and `vol_av`, which is a wrapper over ffmpeg.
-* To use ffmpeg for texture playback in another project, the `vol_av` code can be compiled into a `.dll` as a Unity plugin, with a little bit of project-specific hook-up code added.
+* These are `vol_geom`, which processes vologram header and sequence files into geometry, and `vol_av`, which is a wrapper over FFmpeg.
+* To use FFmpeg for texture playback in another project, the `vol_av` code can be compiled into a `.dll` as a Unity plugin, with a little bit of project-specific hook-up code added.
 * To play a vologram in OpenGL or DirectX, the `vol_geom` and `vol_av` files can be dropped into a program's source build, and the functions accessed directly from your program.
