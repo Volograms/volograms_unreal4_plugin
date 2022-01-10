@@ -1,6 +1,6 @@
 # Volograms Unreal 4 Plugin #
 
-* Current version:              0.6.1 (beta)
+* Current version:              0.6.2 (beta)
 * Built against Unreal version: 4.27
 
 ![Volograms are animated 3D volumetric captures.](rafafloss.gif "Volograms are animated 3D volumetric captures.")
@@ -51,13 +51,45 @@
 
 ![Adding our audio source to play to the BeginPlay event.](adding_sound_file.png "Playing our sound with the VologramActor")
 
-### Dependencies and Licence ###
 
-* Source code included in this plugin copyright 2021 Volograms is provided under the terms of the MIT licence (see LICENSE.md).
-* Other terms apply to third-party code found in the `Source/ThirdParty` sub-directory:
-    * This plugin depends on [FFmpeg](https://www.ffmpeg.org/) for video playback, which is included in the plugin. This is used under the LGPL licence.
-    * The source code for FFmpeg, and various notices, must be attached to any distribution of this plugin. See the FFmpeg website's [Legal](https://ffmpeg.org/legal.html) page for further details.
-    * The MPEG-4 and h264 standards are used by this plugin, which may not be suitable for some commercial uses.
+## Licence ##
+
+Copyright 2021, Volograms.
+
+* Source code included in this plugin copyright 2021 Volograms is provided under the terms of the MIT licence (see the `LICENSE` file for details).
+* Other terms apply to third-party code found in the `Source/volograms/ThirdParty` sub-directory:
+
+### Dependencies
+
+* This software uses unaltered code of <a href=http://ffmpeg.org>FFmpeg</a> licensed under the <a href=http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html>LGPLv2.1</a> and its source code can be found at [github.com/FFmpeg/FFmpeg](https://github.com/FFmpeg/FFmpeg).
+
+See the `Source/volograms/ThirdParty/ffmpeg/LICENSE.md` file for details.
+
+* The LGPL build of Windows FFmpeg included in this repository uses the binary of the H264 codec [openh264](https://github.com/cisco/openh264) from Cisco, which has the BSD-2-Clause Licence.
+
+> Copyright (c) 2013, Cisco Systems
+> All rights reserved.
+> 
+> Redistribution and use in source and binary forms, with or without modification,
+> are permitted provided that the following conditions are met:
+> 
+> * Redistributions of source code must retain the above copyright notice, this
+>   list of conditions and the following disclaimer.
+> 
+> * Redistributions in binary form must reproduce the above copyright notice, this
+>   list of conditions and the following disclaimer in the documentation and/or
+>   other materials provided with the distribution.
+> 
+> THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+> ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+> WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+> DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+> ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+> (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+> LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+> ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+> (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+> SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ### Known Issues ###
 
