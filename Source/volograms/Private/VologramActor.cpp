@@ -1,10 +1,10 @@
 /**
  * Vologram-playing Actor Class for Unreal 4.
  *
- * Copyright: 2022, Volograms (http://volograms.com/) \n
  * Authors:   Anton Gerdelan <anton@volograms.com> \n
+ * Copyright: 2022, Volograms (http://volograms.com/) \n
  * Language:  C++ \n
- * Licence:   The MIT License. See LICENSE file for details. \n
+ * Licence:   The MIT License. See LICENSE.md for details. \n
  */
 
 #include "VologramActor.h"
@@ -80,8 +80,8 @@ bool AVologramActor::load_vologram_meta() {
     bool res = vol_geom_create_file_info( hdr_char_array, seq_char_array, &this->vol_geom_info );
     if ( !res ) {
       this->vol_meta_info_loaded = false;
-      // note that using ascii string here (despite it using printf formatting) produces gibberish so using original strings
-      // if we need to check the ascii contents would could do a windows-style debug message and capture in debugview or write to a file?
+      // Note that using ASCII string here (despite it using printf formatting) produces gibberish so using original strings
+      // if we need to check the ascii contents we could do a windows-style debug message and capture in debugview or write to a file
       UE_LOG( LogClass, Warning, TEXT( "[VOL] ERROR: loading VOL from files. %s %s" ), *hdr_fstr, *seq_fstr );
       return false;
     } else {
@@ -94,14 +94,14 @@ bool AVologramActor::load_vologram_meta() {
 }
 
 bool AVologramActor::update_mesh_with_frame( int frame_idx, bool only_if_keyframe ) {
-  // i guess this is a bit of a hack here.
+  // I guess this is a bit of a hack here.
   if ( !this->vol_meta_info_loaded ) {
     if ( !load_vologram_meta() ) {
       UE_LOG( LogTemp, Log, TEXT( "[VOL] ERROR: Failed to load Vologram metadata from files.\n" ) );
       return false;
     }
 
-    // only set this once to avoid a loop of insanity
+    // Only set this once to avoid a loop of insanity
     { // ROTATE AND SCALE VOL
 
       float tx = vol_geom_info.hdr.translation[0];
@@ -113,14 +113,10 @@ bool AVologramActor::update_mesh_with_frame( int frame_idx, bool only_if_keyfram
       float rz = vol_geom_info.hdr.rotation[3];
       float rw = vol_geom_info.hdr.rotation[0];
 
-      // NB vertices.Add(FVector(z, -x, y));
-      // U4: +Y is right, +Z is up, +X is depth
-
-      const float u4_scale = 100.0f; // m in VOl to cm in U4
+      const float u4_scale = 100.0f; // m in .vols to cm in U4
 
       FTransform T = FTransform( FVector( tz, -tx, ty ) );
       FTransform R;
-      // TODO(Anton) 10 Jan 2022 - test with a new vologram - i think we can unflip these or in fact remove the quaternion
       R.SetRotation( FQuat( rz, -rx, -rw, ry ) ); // NB(Anton) note that z and w are flipped here...
       FTransform S;
       S.SetScale3D( FVector( vol_geom_info.hdr.scale, vol_geom_info.hdr.scale, vol_geom_info.hdr.scale ) );
@@ -138,7 +134,7 @@ bool AVologramActor::update_mesh_with_frame( int frame_idx, bool only_if_keyfram
     FString TestHUDString = FString( TEXT( "[VOL] ERROR vol_geom_info.hdr.frame_count" ) );
     // GEngine->AddOnScreenDebugMessage( -1, 5.f, FColor::Red, TestHUDString );
     return false;
-  } // out of range
+  } // endif out of range
 
   bool is_keyframe = ( vol_geom_info.frame_headers_ptr[frame_idx].keyframe != 0 );
   if ( only_if_keyframe && !is_keyframe ) { return true; } // frameskip/drop (can't skip keyframes)
@@ -152,7 +148,7 @@ bool AVologramActor::update_mesh_with_frame( int frame_idx, bool only_if_keyfram
   FString hdr_fstr = this->vol_header_path.FilePath;
   FString seq_fstr = this->vol_sequence_path.FilePath;
 
-  // doing a weird round-about string copy because of temporary memory problems with pointers into FStrings.
+  // Doing a weird round-about string copy because of temporary memory problems with pointers into FStrings.
   char hdr_char_array[2048], seq_char_array[2048];
   hdr_char_array[0] = seq_char_array[0] = '\0';
   strncat( hdr_char_array, TCHAR_TO_ANSI( *hdr_fstr ), 2047 );
@@ -172,8 +168,9 @@ bool AVologramActor::update_mesh_with_frame( int frame_idx, bool only_if_keyfram
     float x = points_ptr[i * 3 + 0];
     float y = points_ptr[i * 3 + 1];
     float z = points_ptr[i * 3 + 2];
-    // note ordering change for U4. Unity {+x right, +y up, +z into screen}. Unreal {+x into screen, +y right, +z up}. Typical OpenGL {+x right, +y up, +z out
-    // of screen}.
+    // Note ordering change for U4. .vols uses Unity  {+x right,       +y up,    +z into screen} axes.
+    //                                         Unreal {+x into screen, +y right, +z up}.
+    //                                 Typical OpenGL {+x right,       +y up,    +z out of screen}.
     vertices.Add( FVector( z, x, y ) );
   }
   normals.Reserve( n_vertices );
@@ -184,14 +181,9 @@ bool AVologramActor::update_mesh_with_frame( int frame_idx, bool only_if_keyfram
       float x = normals_ptr[i * 3 + 0];
       float y = normals_ptr[i * 3 + 1];
       float z = normals_ptr[i * 3 + 2];
-
-      // TODO(Anton) 10 Jan 2022 - test with a new vologram - i think we can unflip these or in fact remove the quaternion
-
-      // note I had to apply an additional switch in OpenGL for normals.
-      // so same order as points then flip x,z and negate x: (x,y,z) to ( -v_n.z, v_n.y, v_n.x ).
-      // here that means (z,x,y) to (x, -z, y) -- flip x with -z.
-      normals.Add( FVector( -x, z, y ) );
-      vertex_colours.Add( FVector( -x, z, y ) );
+      // NOTE(Anton) 14 Jan 2022 updated component order here to match vertex order as per latest vologram reconstructions.
+      normals.Add( FVector( z, x, y ) );
+      vertex_colours.Add( FVector( z, x, y ) );
     }
   }
 

@@ -1,10 +1,15 @@
 /**
  * Vologram-playing Actor Class for Unreal 4.
  *
- * Copyright: 2021, Volograms (http://volograms.com/) \n
  * Authors:   Anton Gerdelan <anton@volograms.com> \n
+ * Copyright: 2022, Volograms (http://volograms.com/) \n
  * Language:  C++ \n
- * Licence:   The MIT License. See LICENSE file for details. \n
+ * Licence:   The MIT License. See LICENSE.md for details. \n
+ */
+
+/* NOTES(Anton)
+ * Guides/tutorials on U4's Procedural Mesh:
+ * https://www.orfeasel.com/creating-procedural-meshes/
  */
 
 #pragma once
