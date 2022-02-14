@@ -23,7 +23,7 @@ This plugin lets you play [volograms](https://www.volograms.com/) captured eithe
 ### How do I get set up? ###
 
 * If you don't have an existing Unreal project then create a new game project.
-* Download this repository as an archive and unzip into your `<Game>/Plugins/` directory (if this is your first plugin in your game you may have to create the `Plugins` directory).
+* Download this repository as an archive and unzip into your `<Your Game Folder>/Plugins/` directory (if this is your first plugin in your game you may have to create the `Plugins` directory).
 * Relaunch your game project in the Unreal Editor, and in the *Plugins* menu in Unreal Editor enable the *Volograms* plugin.
 * From the *Content browser* (at the bottom of Unreal Editor).
     * Go to the *View Options* drop-down in the corner, and make sure *Show Plugin Content* is selected.
