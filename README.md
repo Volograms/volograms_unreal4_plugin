@@ -43,6 +43,10 @@ This plugin lets you play [volograms](https://www.volograms.com/) captured eithe
 ### Troubleshooting
 
 * _"My vologram is blurry!"_ - Your camera is probably pointing at the rear of the vologram, which is reconstructed and can look blurry. You can rotate the vologram around 180 degrees, or move the camera to the other side.
+* _"The following modules are missing or built with a different engine version."_ - This message box can appear for several reasons.
+    1. Visual Studio isn't [linked to Unreal](https://docs.unrealengine.com/4.27/en-US/ProductionPipelines/DevelopmentSetup/VisualStudioSetup/) - you can confirm it works by creating a new C++ game project that includes a class to compile.
+    2. The version of Unreal differs signficantly from the version the plugin was built against. This is not usually the case.
+    3. Within the volograms plugin in your game, try deleting the `Intermediate/` and `Binaries/` subdirectories to force a rebuild of the plugin. This can occur when copying a built plugin folder from one game project to another.
 
 ### Packaging Your Project
 
