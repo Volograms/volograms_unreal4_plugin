@@ -27,13 +27,13 @@ This plugin lets you play [volograms](https://www.volograms.com/) captured eithe
 * Relaunch your game project in the Unreal Editor, and in the *Plugins* menu in Unreal Editor enable the *Volograms* plugin.
 * From the *Content browser* (at the bottom of Unreal Editor).
     * Go to the *View Options* drop-down in the corner, and make sure *Show Plugin Content* is selected.
-    * Find the `VologramActor` Blueprint, and right click on it to 'Create Child Blueprint Class'.
-* Drag your new vologram actor blueprint into your scene.
+    * Find the `VologramActor` Blueprint.
+    * Drag the actor blueprint into your 3D scene.
 * In the side context panel that appears when your vologram is selected:
+    * Ensure that *VologramMaterial* is selected in the *Material* drop-down.
     * Set the paths to the vologram *header* .vols file,
     * the *sequence* .vols file,
     * and the *video texture* file. 
-    * Ensure that *VologramMaterial* is selected in the *Material* drop-down.
 * Hit *play* to preview your vologram in Unreal.
 
 ![The end product should display like this.](antonvologram.png "The end product should display like this!")
