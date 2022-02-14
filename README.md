@@ -40,6 +40,10 @@ This plugin lets you play [volograms](https://www.volograms.com/) captured eithe
 
 ![The end product should display like this.](antonvologram.png "The end product should display like this!")
 
+### Troubleshooting
+
+* _"My vologram is blurry!"_ - Your camera is probably pointing at the rear of the vologram, which is reconstructed and can look blurry. You can rotate the vologram around 180 degrees, or move the camera to the other side.
+
 ### Packaging Your Project
 
 * Double-check in the *VologramActor* that the paths to your vologram files will be the correct relative or absolute paths when packaged.
