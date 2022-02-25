@@ -20,7 +20,7 @@ This plugin lets you play [volograms](https://www.volograms.com/) captured eithe
 * macOS and iOS are work-in-progress.
 * Android is planned for a future version.
 
-### How do I get set up? ###
+### How Do I Get Set Up? ###
 
 * This plugin comes as source code - you'll need Unreal [set up with Visual Studio](https://docs.unrealengine.com/4.27/en-US/ProductionPipelines/DevelopmentSetup/VisualStudioSetup/) to include this plugin in your projects.
 * If you don't have an existing Unreal project then create a new game project.
