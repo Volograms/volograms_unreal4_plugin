@@ -17,7 +17,7 @@ This plugin lets you play [volograms](https://www.volograms.com/) captured eithe
 ### Operating Systems Supported ###
 
 * Only 64-bit Windows systems are supported currently.
-* MacOS and iOS are work-in-progress.
+* macOS and iOS are work-in-progress.
 * Android is planned for a future version.
 
 ### How do I get set up? ###
