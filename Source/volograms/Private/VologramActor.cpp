@@ -77,7 +77,8 @@ bool AVologramActor::load_vologram_meta() {
     if ( fps <= 0.0 ) { fps = 30.0; }                       // if video reports invalid FPS then guess that it should be 30.
   }
   { // GEOMETRY
-    bool res = vol_geom_create_file_info( hdr_char_array, seq_char_array, &this->vol_geom_info );
+		bool streaming_mode = true;
+    bool res = vol_geom_create_file_info( hdr_char_array, seq_char_array, &this->vol_geom_info, streaming_mode );
     if ( !res ) {
       this->vol_meta_info_loaded = false;
       // Note that using ASCII string here (despite it using printf formatting) produces gibberish so using original strings
