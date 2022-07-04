@@ -2,7 +2,7 @@
 
 This plugin lets you play [volograms](https://www.volograms.com/) captured either in the studio, or with the [Volu](https://www.volograms.com/volu) mobile app in projects using Epic's [Unreal 4](https://www.unrealengine.com/en-US/) engine.
 
-* Current version:              0.6.2 (beta)
+* Current version:              0.7 (beta)
 * Built against Unreal version: 4.27
 
 ![Volograms are animated 3D volumetric captures.](rafafloss.gif "Volograms are animated 3D volumetric captures.")
