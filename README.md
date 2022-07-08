@@ -86,7 +86,8 @@ _In the Vologram Actor panel I have made sure the `Material` field is set to `Vo
 
 ![Adding our audio source to play to the BeginPlay event.](adding_sound_file.png "Playing our sound with the VologramActor")
 
-* If you have audio in your vologram's texture video file, it is possible to play this with your vologram.
+If you have audio in your vologram's texture video file, it is possible to play this with your vologram.
+
 * Create a MediaPlayer and file MediaSource, pointing to your video file, in your content tree. 
 * Add a MediaPlayer component to your Vologram actor instance, linked to your MediaPlayer.
 * Similarly to the above method for sound sources, instead launch an Open Source event linked to a MediaPlayer variable.
