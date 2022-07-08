@@ -23,12 +23,12 @@ This plugin lets you play [volograms](https://www.volograms.com/) captured eithe
 ### How Do I Get Set Up? ###
 
 These instructions assume you have a volumetric capture on your computer, that you have exported from the [Volu](https://www.volograms.com/volu) app.
+We also assume here that you have used Unreal Engine before, and followed the Unreal C++ set-up tutorial with Visual Studio integration.
 
 ![image](https://user-images.githubusercontent.com/1935602/177565873-feecd8dc-b2f1-4e85-90f4-4407be509c6f.png)
 
 _Your exported vologram, unzipped, will have an unique name - mine is called `1625472326152_ld`, and contains the above header, sequence, and video texture files. We will use this plugin to load and play these files from your volograms._
 
-We also assume here that you have used Unreal Engine before, and followed the Unreal C++ set-up tutorial with Visual Studio integration.
 
 * This plugin comes as source code - you'll need Unreal [set up with Visual Studio](https://docs.unrealengine.com/4.27/en-US/ProductionPipelines/DevelopmentSetup/VisualStudioSetup/) to include this plugin in your projects.
 * If you don't have an existing Unreal project then create a new game project.
