@@ -23,7 +23,7 @@ This plugin lets you play [volograms](https://www.volograms.com/) captured eithe
 ### How Do I Get Set Up? ###
 
 These instructions assume you have a volumetric capture on your computer, that you have exported from the [Volu](https://www.volograms.com/volu) app.
-If you have not used Unreal Engine before, we suggest you follow the Unreal C++ set-up tutorial with Visual Studio integration, and familiarise yourself with the tools for creating a simple scene.
+If you have not used Unreal Engine before, we suggest you follow the [Unreal C++ set-up tutorial](https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCPP/CPPProgrammingQuickStart/) with Visual Studio integration, and familiarise yourself with the tools for creating a simple scene.
 
 ![image](https://user-images.githubusercontent.com/1935602/177565873-feecd8dc-b2f1-4e85-90f4-4407be509c6f.png)
 
