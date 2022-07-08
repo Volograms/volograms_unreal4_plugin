@@ -26,7 +26,7 @@ These instructions assume you have a volumetric capture on your computer, that y
 
 ![image](https://user-images.githubusercontent.com/1935602/177565873-feecd8dc-b2f1-4e85-90f4-4407be509c6f.png)
 
-_Your exported vologram, unzipped, will have an unique name - mine is called `_1625472326152_ld_`, and contains the above header, sequence, and video texture files. We will use this plugin to load and play these files from your volograms._
+_Your exported vologram, unzipped, will have an unique name - mine is called `1625472326152_ld`, and contains the above header, sequence, and video texture files. We will use this plugin to load and play these files from your volograms._
 
 We also assume here that you have used Unreal Engine before, and followed the Unreal C++ set-up tutorial with Visual Studio integration.
 
