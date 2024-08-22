@@ -26,9 +26,9 @@ public class volograms : ModuleRules
     PublicDefinitions.Add("_CRT_HAS_CXX17=0"); // Work-around error in Windows SDK where to werrors on ifdef __cplusplus
     System.Console.WriteLine("VOL: IncludePath = " + IncludePath);
 
-    if ((Target.Platform == UnrealTargetPlatform.Win64) || (Target.Platform == UnrealTargetPlatform.Win32))
+    if ((Target.Platform == UnrealTargetPlatform.Win64))
     {
-      string PlatformString = (Target.Platform == UnrealTargetPlatform.Win64) ? "x64" : "Win32";
+      string PlatformString = "x64";
       string BinariesPath = Path.Combine(FFMPEGPath, "bin", "vs", PlatformString);
       string LibrariesPath = Path.Combine(FFMPEGPath, "lib", "vs", PlatformString);
       System.Console.WriteLine("VOL: LibrariesPath = " + LibrariesPath);
