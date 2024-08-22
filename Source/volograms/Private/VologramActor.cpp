@@ -270,11 +270,18 @@ void AVologramActor::read_next_av_frame_to_texture() {
       return;
     }
   }
-  //void* textures_data_ptr = texture_ptr->PlatformData->Mips[0].BulkData.Lock(LOCK_READ_WRITE);
-  void* textures_data_ptr = texture_ptr->GetPlatformData()->Mips[0].BulkData.Lock( LOCK_READ_WRITE );
+#if ENGINE_MAJOR_VERSION == 4
+  void* textures_data_ptr = texture_ptr->PlatformData->Mips[0].BulkData.Lock( LOCK_READ_WRITE );
+  // NOTE(Anton) 4 here, not n!! or U4 will get a corrupted image (that you'll see in the preview)
+  FMemory::Memcpy( textures_data_ptr, img_ptr, sz );
+  texture_ptr->PlatformData->Mips[0].BulkData.Unlock();
+#else 
+    void* textures_data_ptr = texture_ptr->GetPlatformData()->Mips[0].BulkData.Lock( LOCK_READ_WRITE );
   // NOTE(Anton) 4 here, not n!! or U4 will get a corrupted image (that you'll see in the preview)
   FMemory::Memcpy( textures_data_ptr, img_ptr, sz );
   texture_ptr->GetPlatformData()->Mips[0].BulkData.Unlock();
+#endif
+
   texture_ptr->UpdateResource();
 
   free( img_ptr );
