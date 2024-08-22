@@ -184,7 +184,7 @@ bool AVologramActor::update_mesh_with_frame( int frame_idx, bool only_if_keyfram
       float z = normals_ptr[i * 3 + 2];
       // NOTE(Anton) 14 Jan 2022 updated component order here to match vertex order as per latest vologram reconstructions.
       normals.Add( FVector( z, x, y ) );
-      vertex_colours.Add( FVector( z, x, y ) );
+      vertex_colours.Add( FLinearColor( z, x, y ) );
     }
   }
 
@@ -270,10 +270,11 @@ void AVologramActor::read_next_av_frame_to_texture() {
       return;
     }
   }
-  void* textures_data_ptr = texture_ptr->PlatformData->Mips[0].BulkData.Lock( LOCK_READ_WRITE );
+  //void* textures_data_ptr = texture_ptr->PlatformData->Mips[0].BulkData.Lock(LOCK_READ_WRITE);
+  void* textures_data_ptr = texture_ptr->GetPlatformData()->Mips[0].BulkData.Lock( LOCK_READ_WRITE );
   // NOTE(Anton) 4 here, not n!! or U4 will get a corrupted image (that you'll see in the preview)
   FMemory::Memcpy( textures_data_ptr, img_ptr, sz );
-  texture_ptr->PlatformData->Mips[0].BulkData.Unlock();
+  texture_ptr->GetPlatformData()->Mips[0].BulkData.Unlock();
   texture_ptr->UpdateResource();
 
   free( img_ptr );

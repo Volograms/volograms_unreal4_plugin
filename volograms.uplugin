@@ -22,6 +22,10 @@
 			"WhitelistPlatforms": [
 				"Win64",
 				"Mac"
+			],		
+			"AdditionalDependencies": [
+				"Engine",
+				"ProceduralMeshComponent"
 			]
 		}
 	],
