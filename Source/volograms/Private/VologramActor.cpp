@@ -9,6 +9,9 @@
 
 #include "VologramActor.h"
 #include "Materials/MaterialInstanceDynamic.h"
+#include "TextureResource.h"
+#include "Engine/Texture2D.h"
+#include "Runtime/Launch/Resources/Version.h"
 #ifdef _MSC_VER
 #define _CRT_SECURE_NO_WARNINGS
 #endif
