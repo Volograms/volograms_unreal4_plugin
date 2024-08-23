@@ -134,7 +134,7 @@ bool AVologramActor::update_mesh_with_frame( int frame_idx, bool only_if_keyfram
     }
   }
 
-  if ( frame_idx < 0 || frame_idx >= this->vol_geom_info.hdr.frame_count ) {
+  if ( frame_idx < 0 || frame_idx >= int(this->vol_geom_info.hdr.frame_count) ) {
     FString TestHUDString = FString( TEXT( "[VOL] ERROR vol_geom_info.hdr.frame_count" ) );
     // GEngine->AddOnScreenDebugMessage( -1, 5.f, FColor::Red, TestHUDString );
     return false;
@@ -344,7 +344,7 @@ void AVologramActor::Tick( float DeltaTime ) {
 
   // TODO(Anton) add frameskip for really slow playback
 
-  if ( current_frame < this->vol_geom_info.hdr.frame_count - 1 ) {
+  if ( current_frame < int(this->vol_geom_info.hdr.frame_count) - 1 ) {
     current_frame++;
     update_mesh_with_frame( current_frame, false );
     if ( vol_geom_is_keyframe( &this->vol_geom_info, current_frame ) ) { this->previous_keyframe_loaded = current_frame; }

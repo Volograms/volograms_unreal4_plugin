@@ -21,13 +21,20 @@ public class volograms : ModuleRules
     // NOTE(anton) moved ThirdParty under the module dir so that plugin packager would include it
     string ThirdPartyPath = Path.GetFullPath(Path.Combine(UProjectPath, "Source/volograms/ThirdParty"));
     string FFMPEGPath = Path.Combine(ThirdPartyPath, "ffmpeg");
-    string IncludePath = Path.Combine(FFMPEGPath, "include");
-    PublicIncludePaths.Add(IncludePath);
-    if (Target.DefaultBuildSettings == BuildSettingsVersion.V1)
+    string FFMPEGIncludePath = Path.Combine(FFMPEGPath, "include");
+    PublicIncludePaths.Add(FFMPEGIncludePath);
+    string BasisUPath = Path.Combine(ThirdPartyPath, "basis_universal");
+    string BasisUPathIncludePath = Path.Combine(BasisUPath, "transcoder");
+    PublicIncludePaths.Add(BasisUPathIncludePath);
+
+    PublicDefinitions.Add("BASISD_SUPPORT_KTX2=0");
+    PublicDefinitions.Add("BASISU_HASHMAP_TEST=0");
+
+        if (Target.DefaultBuildSettings == BuildSettingsVersion.V1)
     {
         PublicDefinitions.Add("_CRT_HAS_CXX17=0"); // Work-around error in Windows SDK where to werrors on ifdef __cplusplus
     }
-    System.Console.WriteLine("VOL: IncludePath = " + IncludePath);
+    System.Console.WriteLine("VOL: IncludePath = " + FFMPEGIncludePath);
 
     if ((Target.Platform == UnrealTargetPlatform.Win64))
     {
