@@ -1,16 +1,15 @@
 {
 	"FileVersion": 3,
-	"Version": 0.7,
-	"VersionName": "0.7",
+	"Version": 1,
+	"VersionName": "0.8",
 	"FriendlyName": "Volograms Toolkit",
-	"Description": "The Volograms Toolkit plugin to play recordings in your Unreal 4 scene.",
+	"Description": "The Volograms Toolkit plugin to play recordings in your Unreal 4 & 5 scene.",
 	"Category": "Mixed Reality",
 	"CreatedBy": "Volograms, Ltd.",
 	"CreatedByURL": "https://volograms.com/",
 	"DocsURL": "",
 	"MarketplaceURL": "",
 	"SupportURL": "",
-	"EngineVersion": "4.27.0",
 	"CanContainContent": true,
 	"IsBetaVersion": true,
 	"Installed": true,
@@ -20,8 +19,11 @@
 			"Type": "Runtime",
 			"LoadingPhase": "PreLoadingScreen",
 			"WhitelistPlatforms": [
-				"Win64",
-				"Mac"
+				"Win64"
+			],		
+			"AdditionalDependencies": [
+				"Engine",
+				"ProceduralMeshComponent"
 			]
 		}
 	],
