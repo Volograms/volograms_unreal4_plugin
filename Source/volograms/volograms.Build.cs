@@ -23,7 +23,10 @@ public class volograms : ModuleRules
     string FFMPEGPath = Path.Combine(ThirdPartyPath, "ffmpeg");
     string IncludePath = Path.Combine(FFMPEGPath, "include");
     PublicIncludePaths.Add(IncludePath);
-    PublicDefinitions.Add("_CRT_HAS_CXX17=0"); // Work-around error in Windows SDK where to werrors on ifdef __cplusplus
+    if (Target.DefaultBuildSettings == BuildSettingsVersion.V1)
+    {
+        PublicDefinitions.Add("_CRT_HAS_CXX17=0"); // Work-around error in Windows SDK where to werrors on ifdef __cplusplus
+    }
     System.Console.WriteLine("VOL: IncludePath = " + IncludePath);
 
     if ((Target.Platform == UnrealTargetPlatform.Win64))
