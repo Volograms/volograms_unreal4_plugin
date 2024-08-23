@@ -18,7 +18,7 @@
 			"Name": "volograms",
 			"Type": "Runtime",
 			"LoadingPhase": "PreLoadingScreen",
-			"PlatformAllowList": [
+			"WhitelistPlatforms": [
 				"Win64"
 			],		
 			"AdditionalDependencies": [
