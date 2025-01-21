@@ -97,6 +97,9 @@ class VOLOGRAMS_API AVologramActor : public AActor {
 
   double fps = 30.0;
 
+  // set this when opening file to know if it's a video or a basisU texture
+  bool has_bassis_texture = false;
+
   // UPROPERTY( EditAnywhere, Category = "Volograms" )
   /** Time elapsed within current frame of playback, in seconds. */
   double frame_timer_s = 0.0;

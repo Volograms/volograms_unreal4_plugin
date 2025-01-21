@@ -50,6 +50,9 @@ bool AVologramActor::load_vologram_meta() {
   FString seq_fstr = this->vol_sequence_path.FilePath;
   FString mp4_fstr = this->vol_mp4_path.FilePath;
 
+  this->has_bassis_texture = false;
+  if ( hdr_fstr.IsEmpty() && !seq_fstr.IsEmpty() && mp4_fstr.IsEmpty() ) { this->has_bassis_texture = true; }
+
   // doing a weird round-about string copy because of temporary memory problems with pointers into FStrings.
   char mp4_char_array[2048], hdr_char_array[2048], seq_char_array[2048];
   mp4_char_array[0] = hdr_char_array[0] = seq_char_array[0] = '\0';
@@ -63,7 +66,7 @@ bool AVologramActor::load_vologram_meta() {
   this->current_frame        = 0;
   this->frame_timer_s        = 0.0;
 
-  { // VIDEO
+  if (!this->has_bassis_texture) { // VIDEO
     bool res = vol_av_open( mp4_char_array, &this->vol_video_info );
     if ( !res ) {
       this->vol_meta_info_loaded = false;
@@ -80,8 +83,13 @@ bool AVologramActor::load_vologram_meta() {
     if ( fps <= 0.0 ) { fps = 30.0; }                       // if video reports invalid FPS then guess that it should be 30.
   }
   { // GEOMETRY
-		bool streaming_mode = true;
-    bool res = vol_geom_create_file_info( hdr_char_array, seq_char_array, &this->vol_geom_info, streaming_mode );
+	bool streaming_mode = true;
+    bool res = false;
+    if ( this->has_bassis_texture ) {
+      res = vol_geom_create_file_info_from_file( seq_char_array, &this->vol_geom_info );
+    } else {
+        res = vol_geom_create_file_info( hdr_char_array, seq_char_array, &this->vol_geom_info, streaming_mode );
+    }
     if ( !res ) {
       this->vol_meta_info_loaded = false;
       // Note that using ASCII string here (despite it using printf formatting) produces gibberish so using original strings
@@ -349,28 +357,31 @@ void AVologramActor::Tick( float DeltaTime ) {
     update_mesh_with_frame( current_frame, false );
     if ( vol_geom_is_keyframe( &this->vol_geom_info, current_frame ) ) { this->previous_keyframe_loaded = current_frame; }
     this->previous_frame_loaded = current_frame;
-    read_next_av_frame_to_texture();
+    if(!this->has_bassis_texture)
+      read_next_av_frame_to_texture();
   } else if ( this->loop_vologram ) {
-    current_frame = 0;
+      current_frame = 0;
 
-    // have to close and re-open the whole video because it doesn't seek back to 0 properly.
-    FString mp4_fstr = this->vol_mp4_path.FilePath;
-    char mp4_char_array[2048];
-    mp4_char_array[0] = '\0';
-    strncat( mp4_char_array, TCHAR_TO_ANSI( *mp4_fstr ), 2047 );
-    if ( !vol_av_close( &this->vol_video_info ) ) {
-      UE_LOG( LogClass, Warning, TEXT( "[VOL] ERROR: closing VOL MP4 file: `%s`." ), *mp4_fstr );
-      return;
+    if(!this->has_bassis_texture) {
+      // have to close and re-open the whole video because it doesn't seek back to 0 properly.
+      FString mp4_fstr = this->vol_mp4_path.FilePath;
+      char mp4_char_array[2048];
+      mp4_char_array[0] = '\0';
+      strncat( mp4_char_array, TCHAR_TO_ANSI( *mp4_fstr ), 2047 );
+      if ( !vol_av_close( &this->vol_video_info ) ) {
+        UE_LOG( LogClass, Warning, TEXT( "[VOL] ERROR: closing VOL MP4 file: `%s`." ), *mp4_fstr );
+        return;
+      }
+      if ( !vol_av_open( mp4_char_array, &this->vol_video_info ) ) {
+        UE_LOG( LogClass, Warning, TEXT( "[VOL] ERROR: loading VOL MP4 file: `%s`." ), *mp4_fstr );
+        return;
+      }
+      read_next_av_frame_to_texture();
+    
+      // just in case the file changed since last loop!
+      this->fps = vol_av_frame_rate( &this->vol_video_info );
+      if ( fps <= 0.0 ) { fps = 30.0; }
     }
-    if ( !vol_av_open( mp4_char_array, &this->vol_video_info ) ) {
-      UE_LOG( LogClass, Warning, TEXT( "[VOL] ERROR: loading VOL MP4 file: `%s`." ), *mp4_fstr );
-      return;
-    }
-    read_next_av_frame_to_texture();
-    // just in case the file changed since last loop!
-    this->fps = vol_av_frame_rate( &this->vol_video_info );
-    if ( fps <= 0.0 ) { fps = 30.0; }
-
     update_mesh_with_frame( current_frame, false );
     if ( vol_geom_is_keyframe( &this->vol_geom_info, current_frame ) ) { this->previous_keyframe_loaded = current_frame; }
     this->previous_frame_loaded = current_frame;
