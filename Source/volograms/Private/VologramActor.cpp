@@ -114,7 +114,7 @@ bool AVologramActor::update_mesh_with_frame( int frame_idx, bool only_if_keyfram
     }
 
     // Only set this once to avoid a loop of insanity
-    { // ROTATE AND SCALE VOL
+    if(vol_geom_info.hdr.version < 13) { // ROTATE AND SCALE VOL
 
       float tx = vol_geom_info.hdr.translation[0];
       float ty = vol_geom_info.hdr.translation[1];
@@ -139,6 +139,13 @@ bool AVologramActor::update_mesh_with_frame( int frame_idx, bool only_if_keyfram
 
       FTransform pM = GetActorTransform();
       SetActorTransform( RST * Su * pM );
+    }
+    else {
+        const float u4_scale = 100.0f; // m in .vols to cm in U4
+        FTransform Su;
+        Su.SetScale3D(FVector(u4_scale, u4_scale, u4_scale));
+        FTransform pM = GetActorTransform();
+        SetActorTransform(Su * pM);
     }
   }
 
@@ -349,12 +356,14 @@ void AVologramActor::Tick( float DeltaTime ) {
     advance_frame = true;
   }
   if ( !advance_frame ) { return; }
+  
 
   // TODO(Anton) add frameskip for really slow playback
 
   if ( current_frame < int(this->vol_geom_info.hdr.frame_count) - 1 ) {
     current_frame++;
-    update_mesh_with_frame( current_frame, false );
+    bool update_result = update_mesh_with_frame( current_frame, false );
+    UE_LOG(LogClass, Warning, TEXT("[VOL] INFO: Update mesh: `%d`."), current_frame);
     if ( vol_geom_is_keyframe( &this->vol_geom_info, current_frame ) ) { this->previous_keyframe_loaded = current_frame; }
     this->previous_frame_loaded = current_frame;
     if(!this->has_bassis_texture)
